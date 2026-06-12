@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olga Gzz · Diseño Industrial</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --amarillo: #FDFAC7;
+      --amarillo-deep: #F5F098;
+      --rosa: #F7B8C8;
+      --rosa-light: #FDE8EF;
+      --menta: #BFE8CB;
+      --cielo: #B2DBEC;
+      --lavanda: #CFC4E8;
+      --text: #2A2A2A;
+      --text-soft: #666;
+      --white: #FFFFFF;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--amarillo);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(transparent, transparent 27px, #b8d8f040 28px),
+        linear-gradient(90deg, transparent 56px, #f4a7b920 57px, transparent 58px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .content-wrap { position: relative; z-index: 1; }
+
+    /* NAV */
+    nav {
+      background: rgba(253,250,199,0.88);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--rosa);
+      padding: 12px 0;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-brand { font-family:'Caveat',cursive; font-size:1.6rem; font-weight:700; color:var(--text); text-decoration:none; }
+    .nav-brand span { color: var(--rosa); }
+    .nav-link-custom { font-size:0.83rem; font-weight:500; color:var(--text-soft); text-decoration:none; padding:4px 12px; border-radius:20px; transition:all .2s; letter-spacing:0.03em; text-transform:uppercase; }
+    .nav-link-custom:hover { background:var(--rosa-light); color:var(--text); }
+
+    /* HERO */
+    .hero { min-height:92vh; display:flex; align-items:center; padding:80px 0 60px; }
+    .hero-card { background:var(--white); border-radius:24px; border:2.5px solid #ddd; padding:60px 52px; position:relative; box-shadow:6px 6px 0 var(--rosa); }
+    .tape { position:absolute; background:rgba(207,196,232,0.65); border-radius:4px; transform-origin:center; }
+    .tape-top { width:140px; height:28px; top:-14px; left:50%; transform:translateX(-50%) rotate(-1.5deg); }
+    .tape-corner { width:90px; height:22px; bottom:-10px; right:40px; transform:rotate(3deg); background:rgba(184,224,200,0.7); }
+    .star { position:absolute; font-size:2.8rem; line-height:1; pointer-events:none; user-select:none; }
+    .star-1 { top:-30px; left:-20px; color:var(--rosa); transform:rotate(-15deg); }
+    .star-2 { bottom:-20px; right:-10px; color:var(--menta); transform:rotate(20deg); font-size:2rem; }
+    .hero-eyebrow { font-size:0.78rem; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-soft); margin-bottom:12px; }
+    .hero-name { font-family:'Caveat',cursive; font-size:clamp(3.2rem,8vw,5.5rem); font-weight:700; line-height:1.05; margin-bottom:8px; }
+    .hero-name .highlight { color:var(--rosa); display:inline-block; position:relative; }
+    .hero-name .highlight::after { content:''; position:absolute; bottom:2px; left:0; right:0; height:6px; background:var(--amarillo-deep); z-index:-1; border-radius:3px; }
+    .hero-title { font-size:1rem; font-weight:400; color:var(--text-soft); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:28px; }
+    .hero-desc { font-size:1.05rem; line-height:1.75; color:var(--text); max-width:520px; margin-bottom:36px; }
+    .hero-tags { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:36px; }
+    .tag { font-size:0.78rem; font-weight:500; padding:5px 14px; border-radius:20px; border:1.5px solid currentColor; }
+    .tag-rosa  { color:#d97a95; background:var(--rosa-light); }
+    .tag-menta { color:#4a9a65; background:#e8f7ed; }
+    .tag-cielo { color:#3a7fa0; background:#e0f3fb; }
+    .tag-lila  { color:#7a62b5; background:#ede9f9; }
+    .btn-contact { font-size:0.88rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; padding:12px 28px; border-radius:30px; background:var(--rosa); color:var(--white); border:none; text-decoration:none; display:inline-block; transition:transform .15s,box-shadow .15s; box-shadow:3px 3px 0 #d97a95; }
+    .btn-contact:hover { transform:translate(-2px,-2px); box-shadow:5px 5px 0 #d97a95; color:var(--white); }
+
+    /* SECTION COMMONS */
+    section { padding:80px 0; }
+    .section-label { font-size:0.72rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-soft); margin-bottom:6px; }
+    .section-title { font-family:'Caveat',cursive; font-size:clamp(2.2rem,5vw,3.2rem); font-weight:700; line-height:1.1; margin-bottom:0; }
+
+    /* SOBRE MÍ */
+    #sobre { background: var(--white); }
+    .skills-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:12px; margin-top:24px; }
+    .skill-pill { background:var(--amarillo); border:1.5px solid #e0dc80; border-radius:12px; padding:12px 16px; font-size:0.82rem; font-weight:500; color:var(--text); }
+    .skill-pill .skill-name { font-weight:600; display:block; margin-bottom:2px; }
+    .skill-pill .skill-level { color:var(--text-soft); font-size:0.75rem; }
+    .soft-list { list-style:none; padding:0; margin:0; }
+    .soft-list li { padding:8px 0; border-bottom:1px dashed #e0e0e0; font-size:0.9rem; display:flex; align-items:center; gap:10px; }
+    .soft-list li::before { content:'✦'; color:var(--rosa); font-size:0.7rem; flex-shrink:0; }
+
+    /* ── GALERÍA GENERAL ── */
+    .gallery-section { margin-top: 56px; }
+    .gallery-section-title {
+      font-family: 'Caveat', cursive;
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .gallery-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    /* Grid masonry-feel */
+    .gallery-grid {
+      display: grid;
+      gap: 14px;
+    }
+    .gallery-grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .gallery-grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .gallery-grid-auto { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+
+    .gallery-img-wrap {
+      border-radius: 14px;
+      overflow: hidden;
+      background: #f0eee8;
+      position: relative;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+    .gallery-img-wrap.tall  { aspect-ratio: 3/4; }
+    .gallery-img-wrap.square { aspect-ratio: 1/1; }
+    .gallery-img-wrap.wide  { aspect-ratio: 16/9; grid-column: span 2; }
+
+    .gallery-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .35s ease;
+    }
+    .gallery-img-wrap:hover img { transform: scale(1.05); }
+
+    /* Placeholder cuando no hay imagen */
+    .img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #f5f5f0 0%, #eceae2 100%);
+      color: #bbb;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 12px;
+      transition: background .2s;
+    }
+    .img-placeholder:hover { background: linear-gradient(135deg, #eee 0%, #e4e2da 100%); }
+    .img-placeholder .ph-icon { font-size: 2rem; margin-bottom: 4px; opacity: 0.35; }
+    .img-placeholder .ph-label { opacity: 0.55; line-height: 1.4; }
+
+    /* Caption overlay */
+    .gallery-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.55));
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 24px 12px 10px;
+      opacity: 0;
+      transition: opacity .25s;
+      pointer-events: none;
+    }
+    .gallery-img-wrap:hover .gallery-caption { opacity: 1; }
+
+    /* Separador de galería por categoría */
+    .gallery-block {
+      padding: 48px 0 24px;
+      border-top: 1.5px dashed #e0e0e0;
+    }
+    .gallery-block:first-child { border-top: none; padding-top: 20px; }
+
+    /* Acento de color por categoría */
+    .gallery-block.gb-cielo  .gallery-section-title { color: #3a7fa0; }
+    .gallery-block.gb-rosa   .gallery-section-title { color: #d97a95; }
+    .gallery-block.gb-menta  .gallery-section-title { color: #3d8855; }
+    .gallery-block.gb-lila   .gallery-section-title { color: #7a62b5; }
+
+    /* LIGHTBOX simple */
+    .lightbox-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox-overlay.active { display: flex; }
+    .lightbox-img { max-width: 90vw; max-height: 88vh; border-radius: 12px; object-fit: contain; }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 28px;
+      color: #fff; font-size: 2rem; cursor: pointer;
+      background: none; border: none; line-height: 1;
+      opacity: 0.7; transition: opacity .2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
+    /* PROYECTOS */
+    #proyectos { background: var(--amarillo); }
+    .cat-num { font-family:'Caveat',cursive; font-size:5rem; font-weight:700; line-height:1; }
+    .cat-card { background:var(--white); border-radius:20px; border:2px solid #eee; padding:36px 32px 28px; height:100%; transition:transform .2s,box-shadow .2s; position:relative; overflow:hidden; }
+    .cat-card::before { content:''; position:absolute; top:0; left:0; right:0; height:5px; border-radius:20px 20px 0 0; }
+    .cat-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(0,0,0,0.08); }
+    .cat-1::before { background:var(--cielo); }
+    .cat-2::before { background:var(--rosa); }
+    .cat-3::before { background:var(--menta); }
+    .cat-4::before { background:var(--lavanda); }
+    .cat-num-1 { color:var(--cielo); filter:saturate(1.4); }
+    .cat-num-2 { color:var(--rosa); filter:saturate(1.4); }
+    .cat-num-3 { color:var(--menta); filter:saturate(1.6) brightness(0.85); }
+    .cat-num-4 { color:var(--lavanda); filter:saturate(1.6) brightness(0.8); }
+    .cat-title { font-size:0.7rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-soft); margin-bottom:12px; }
+    .cat-desc { font-size:0.88rem; line-height:1.65; color:var(--text); }
+    .cat-items { list-style:none; padding:0; margin:16px 0 0; }
+    .cat-items li { font-size:0.8rem; color:var(--text-soft); padding:5px 0; border-bottom:1px dashed #f0f0f0; display:flex; align-items:center; gap:8px; }
+    .cat-items li::before { content:'→'; font-size:0.75rem; }
+
+    /* Mini gallery en tarjeta */
+    .cat-gallery { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:20px; }
+    .cat-gallery-img { border-radius:10px; overflow:hidden; aspect-ratio:1/1; background:#f0eee8; }
+    .cat-gallery-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .3s; }
+    .cat-gallery-img:hover img { transform:scale(1.08); }
+    .cat-gallery-img .img-placeholder { font-size:0.65rem; }
+    .cat-gallery-img .img-placeholder .ph-icon { font-size:1.4rem; }
+
+    /* GALERÍA FULL — sección debajo de las tarjetas */
+    #galeria { background: var(--white); }
+
+    /* EXPERIENCIA */
+    #experiencia { background:var(--rosa-light); }
+    .exp-item { background:var(--white); border-radius:16px; border:1.5px solid #f0d0da; padding:28px 32px; margin-bottom:20px; position:relative; }
+    .exp-item::before { content:''; position:absolute; left:-1px; top:20px; bottom:20px; width:4px; border-radius:4px; background:var(--rosa); }
+    .exp-role { font-size:0.7rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--rosa); margin-bottom:6px; }
+    .exp-title { font-family:'Caveat',cursive; font-size:1.5rem; font-weight:700; margin-bottom:4px; }
+    .exp-date { font-size:0.78rem; color:var(--text-soft); margin-bottom:14px; }
+    .exp-bullets { list-style:none; padding:0; margin:0; }
+    .exp-bullets li { font-size:0.88rem; line-height:1.6; padding:4px 0 4px 18px; position:relative; color:var(--text); }
+    .exp-bullets li::before { content:'•'; position:absolute; left:0; color:var(--rosa); font-size:1.1rem; line-height:1.4; }
+
+    /* Imagen de experiencia */
+    .exp-img-strip { display:flex; gap:10px; margin-top:18px; flex-wrap:wrap; }
+    .exp-img-thumb { width: 100px; height: 72px; border-radius: 10px; overflow: hidden; background: #f0eee8; flex-shrink: 0; }
+    .exp-img-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+    .exp-img-thumb .img-placeholder { font-size:0.6rem; }
+    .exp-img-thumb .img-placeholder .ph-icon { font-size:1.1rem; }
+
+    /* EDUCACIÓN */
+    #educacion { background:#e8f7ed; }
+    .edu-card { background:var(--white); border-radius:16px; padding:28px; border:1.5px solid #c0e0c8; position:relative; }
+    .edu-card::after { content:'🎓'; position:absolute; top:20px; right:20px; font-size:1.6rem; opacity:0.3; }
+    .edu-period { font-size:0.75rem; font-weight:600; letter-spacing:0.1em; color:#4a9a65; margin-bottom:6px; }
+    .edu-degree { font-family:'Caveat',cursive; font-size:1.4rem; font-weight:700; margin-bottom:4px; }
+    .edu-school { font-size:0.85rem; color:var(--text-soft); }
+    .lang-badge { display:inline-flex; align-items:center; gap:8px; background:var(--white); border:1.5px solid #c0e0c8; border-radius:30px; padding:8px 18px; font-size:0.85rem; font-weight:500; }
+
+    /* CONTACTO */
+    #contacto { background:var(--text); }
+    #contacto .section-label { color:var(--rosa); }
+    #contacto .section-title { color:var(--white); }
+    .contact-card { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:28px; display:flex; align-items:center; gap:18px; transition:background .2s; }
+    .contact-card:hover { background:rgba(255,255,255,0.1); }
+    .contact-icon { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
+    .contact-label { font-size:0.72rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.1em; }
+    .contact-value { color:var(--white); font-size:0.95rem; font-weight:500; }
+
+    /* FOOTER */
+    footer { background:var(--text); border-top:1px solid rgba(255,255,255,0.06); padding:24px 0; }
+    footer p { font-size:0.78rem; color:rgba(255,255,255,0.3); margin:0; text-align:center; }
+    footer span { color:var(--rosa); }
+
+    @media (max-width: 768px) {
+      .hero-card { padding:40px 28px; }
+      .hero-name { font-size:3rem; }
+      section { padding:56px 0; }
+      .gallery-grid-3 { grid-template-columns: repeat(2,1fr); }
+      .gallery-grid-4 { grid-template-columns: repeat(2,1fr); }
+      .gallery-img-wrap.wide { grid-column: span 1; }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid-2, .gallery-grid-3, .gallery-grid-4 { grid-template-columns: 1fr; }
+      .gallery-img-wrap.wide { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+<div class="content-wrap">
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <a href="#" class="nav-brand">Olga<span>Gzz</span></a>
+      <div class="d-flex gap-1 flex-wrap">
+        <a href="#sobre"       class="nav-link-custom">Sobre mí</a>
+        <a href="#galeria"     class="nav-link-custom">Galería</a>
+        <a href="#experiencia" class="nav-link-custom">Experiencia</a>
+        <a href="#contacto"    class="nav-link-custom">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-8">
+          <div class="hero-card">
+            <div class="tape tape-top"></div>
+            <div class="tape tape-corner"></div>
+            <span class="star star-1">✦</span>
+            <span class="star star-2">✦</span>
+            <p class="hero-eyebrow">Portafolio · 2026</p>
+            <h1 class="hero-name">Olga <span class="highlight">González</span></h1>
+            <p class="hero-title">Lic. Diseño Industrial · Apodaca, Nuevo León</p>
+            <p class="hero-desc">Diseñadora con enfoque en diseño gráfico, mobiliario e ilustración. Desarrollo propuestas funcionales, estéticas y centradas en la persona — desde modelos 3D en SolidWorks hasta contenido para redes sociales.</p>
+            <div class="hero-tags">
+              <span class="tag tag-cielo">Diseño Industrial</span>
+              <span class="tag tag-rosa">Ilustración Vectorial</span>
+              <span class="tag tag-menta">Fotografía de Producto</span>
+              <span class="tag tag-lila">Modelado 3D</span>
+              <span class="tag tag-cielo">Redes Sociales</span>
+            </div>
+            <a href="#contacto" class="btn-contact">Contáctame ✦</a>
+          </div>
+        </div>
+        <div class="col-lg-4 d-none d-lg-flex flex-column gap-3">
+          <div style="background:var(--white);border-radius:16px;border:2px solid var(--rosa);padding:24px;text-align:center;box-shadow:4px 4px 0 var(--rosa-light);">
+            <div style="font-family:'Caveat',cursive;font-size:3rem;font-weight:700;color:var(--rosa);line-height:1;">4+</div>
+            <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-soft);">Proyectos realizados</div>
+          </div>
+          <div style="background:var(--white);border-radius:16px;border:2px solid var(--menta);padding:24px;text-align:center;box-shadow:4px 4px 0 #c8e8d0;">
+            <div style="font-family:'Caveat',cursive;font-size:2.4rem;font-weight:700;color:#4a9a65;line-height:1.1;">SolidWorks</div>
+            <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-soft);">Nivel avanzado</div>
+          </div>
+          <div style="background:var(--white);border-radius:16px;border:2px solid var(--cielo);padding:24px;text-align:center;box-shadow:4px 4px 0 #cce8f4;">
+            <div style="font-family:'Caveat',cursive;font-size:3rem;font-weight:700;color:#3a7fa0;line-height:1;">UANL</div>
+            <div style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-soft);">Facultad Arquitectura</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section id="sobre">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-5">
+          <p class="section-label">01 · Sobre mí</p>
+          <h2 class="section-title">Habilidades<br/>&amp; herramientas</h2>
+          <p class="mt-4" style="font-size:0.95rem;line-height:1.75;color:var(--text-soft);">Domino todo el proceso creativo: investigación de usuario, modelado 3D, planos técnicos, prototipado y comunicación visual.</p>
+        </div>
+        <div class="col-lg-7">
+          <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-soft);margin-bottom:12px;">Software</p>
+          <div class="skills-grid mb-4">
+            <div class="skill-pill"><span class="skill-name">SolidWorks</span><span class="skill-level">Avanzado</span></div>
+            <div class="skill-pill"><span class="skill-name">Illustrator</span><span class="skill-level">Intermedio</span></div>
+            <div class="skill-pill"><span class="skill-name">Photoshop</span><span class="skill-level">Básico</span></div>
+            <div class="skill-pill"><span class="skill-name">AutoCAD</span><span class="skill-level">Básico</span></div>
+          </div>
+          <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-soft);margin-bottom:12px;">Hard Skills</p>
+          <div class="skills-grid mb-4" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr));">
+            <div class="skill-pill" style="background:var(--rosa-light);border-color:#f0b8c8;"><span class="skill-name">Modelado 3D</span></div>
+            <div class="skill-pill" style="background:var(--rosa-light);border-color:#f0b8c8;"><span class="skill-name">Fotografía de producto</span></div>
+            <div class="skill-pill" style="background:var(--rosa-light);border-color:#f0b8c8;"><span class="skill-name">Planos técnicos</span></div>
+            <div class="skill-pill" style="background:var(--rosa-light);border-color:#f0b8c8;"><span class="skill-name">Investigación de usuario</span></div>
+            <div class="skill-pill" style="background:var(--rosa-light);border-color:#f0b8c8;"><span class="skill-name">Diseño centrado en experiencia</span></div>
+            <div class="skill-pill" style="background:var(--rosa-light);border-color:#f0b8c8;"><span class="skill-name">Prototipado funcional</span></div>
+          </div>
+          <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-soft);margin-bottom:12px;">Soft Skills</p>
+          <ul class="soft-list">
+            <li>Pensamiento creativo</li>
+            <li>Organización y gestión de proyectos</li>
+            <li>Trabajo en equipo</li>
+            <li>Atención al detalle</li>
+            <li>Capacidad de adaptación</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA COMPLETA -->
+  <section id="galeria">
+    <div class="container">
+      <div class="text-center mb-2">
+        <p class="section-label">02 · Portafolio</p>
+        <h2 class="section-title">Galería de trabajo</h2>
+        <p class="mt-3" style="font-size:0.95rem;color:var(--text-soft);max-width:500px;margin:12px auto 0;">
+          Cuatro áreas de trabajo — diseño, redes sociales, fotografía e ilustración.
+        </p>
+      </div>
+
+      <!-- ══ 1 DISEÑO ══ -->
+      <div class="gallery-block gb-cielo">
+        <p class="gallery-label">01 · Diseño</p>
+        <h3 class="gallery-section-title">Diseño de Mobiliario &amp; Modelado 3D</h3>
+        <p style="font-size:0.88rem;color:var(--text-soft);margin-bottom:24px;max-width:600px;">
+          Proyecto de vinculación con Tim Hortons: propuesta ergonómica de mobiliario, renders en SolidWorks y maqueta en fibra de vidrio.
+        </p>
+        <!-- Fila 1: imagen grande + 2 pequeñas -->
+        <div class="gallery-grid gallery-grid-3" style="margin-bottom:14px;">
+          <div class="gallery-img-wrap wide" data-src="diseno-01.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">🛋️</span>
+              <span class="ph-label">Propuesta mobiliario<br/>Tim Hortons</span>
+            </div>
+            <!-- Reemplaza por: <img src="tu-imagen.jpg" alt="Mobiliario Tim Hortons"> -->
+            <div class="gallery-caption">Propuesta de mobiliario — Tim Hortons</div>
+          </div>
+          <div class="gallery-img-wrap" data-src="diseno-02.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">📐</span>
+              <span class="ph-label">Moodboard<br/>concepto visual</span>
+            </div>
+            <div class="gallery-caption">Moodboard</div>
+          </div>
+        </div>
+        <!-- Fila 2: renders 3D -->
+        <div class="gallery-grid gallery-grid-4">
+          <div class="gallery-img-wrap" data-src="3d-01.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">🖥️</span>
+              <span class="ph-label">Render 3D<br/>SolidWorks</span>
+            </div>
+            <div class="gallery-caption">Modelo 3D — SolidWorks</div>
+          </div>
+          <div class="gallery-img-wrap" data-src="3d-02.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">🖥️</span>
+              <span class="ph-label">Render 3D<br/>SolidWorks</span>
+            </div>
+            <div class="gallery-caption">Modelo 3D — SolidWorks</div>
+          </div>
+          <div class="gallery-img-wrap" data-src="maqueta-01.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">🧱</span>
+              <span class="ph-label">Maqueta fibra<br/>de vidrio</span>
+            </div>
+            <div class="gallery-caption">Maqueta en fibra de vidrio</div>
+          </div>
+          <div class="gallery-img-wrap" data-src="planos-01.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">📏</span>
+              <span class="ph-label">Planos<br/>técnicos</span>
+            </div>
+            <div class="gallery-caption">Planos técnicos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ 2 REDES SOCIALES ══ -->
+      <div class="gallery-block gb-rosa">
+        <p class="gallery-label">02 · Redes Sociales</p>
+        <h3 class="gallery-section-title">Contenido Digital</h3>
+        <p style="font-size:0.88rem;color:var(--text-soft);margin-bottom:24px;max-width:600px;">
+          Posts, carruseles e identidad visual para Revista Ciencia UANL y Teatro FARQ. Diseño educativo e institucional para Instagram.
+        </p>
+        <!-- Grid estilo "posts de IG" -->
+        <div class="gallery-grid gallery-grid-3" style="margin-bottom:14px;">
+          <div class="gallery-img-wrap square" data-src="redes-01.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">🌋</span>
+              <span class="ph-label">Post Volcanes<br/>Ciencia UANL</span>
+            </div>
+            <div class="gallery-caption">Post educativo — Volcanes · Ciencia UANL</div>
+          </div>
+          <div class="gallery-img-wrap square" data-src="redes-02.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">🌿</span>
+              <span class="ph-label">Post Anacahuita<br/>Ciencia UANL</span>
+            </div>
+            <div class="gallery-caption">Post educativo — Anacahuita · Ciencia UANL</div>
+          </div>
+          <div class="gallery-img-wrap square" data-src="redes-03.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">🐙</span>
+              <span class="ph-label">Post Sangre<br/>de Colores</span>
+            </div>
+            <div class="gallery-caption">Post educativo — Sangre de colores</div>
+          </div>
+          <div class="gallery-img-wrap square" data-src="redes-04.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">🎭</span>
+              <span class="ph-label">Praxi Teatro<br/>FARQ</span>
+            </div>
+            <div class="gallery-caption">Rebranding — Teatro FARQ / Praxi AFI</div>
+          </div>
+          <div class="gallery-img-wrap square" data-src="redes-05.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">📱</span>
+              <span class="ph-label">Contenido<br/>redes sociales</span>
+            </div>
+            <div class="gallery-caption">Contenido digital</div>
+          </div>
+          <div class="gallery-img-wrap square" data-src="redes-06.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">✏️</span>
+              <span class="ph-label">Guía · revista<br/>digital</span>
+            </div>
+            <div class="gallery-caption">Guía / Revista digital</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ 3 FOTOGRAFÍA ══ -->
+      <div class="gallery-block gb-menta">
+        <p class="gallery-label">03 · Fotografía</p>
+        <h3 class="gallery-section-title">Fotografía de Producto &amp; Social</h3>
+        <p style="font-size:0.88rem;color:var(--text-soft);margin-bottom:24px;max-width:600px;">
+          Still life de producto con composición y paleta intencional. Fotografía social y de fauna para proyectos editoriales.
+        </p>
+        <div class="gallery-grid gallery-grid-3" style="margin-bottom:14px;">
+          <!-- imagen grande producto Natura -->
+          <div class="gallery-img-wrap tall" data-src="foto-01.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">🌸</span>
+              <span class="ph-label">Producto Natura<br/>Tododia · rosas</span>
+            </div>
+            <div class="gallery-caption">Fotografía de producto — Natura Tododia</div>
+          </div>
+          <div class="gallery-img-wrap tall" data-src="foto-02.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">🌿</span>
+              <span class="ph-label">Producto Natura<br/>Tododia · flores</span>
+            </div>
+            <div class="gallery-caption">Fotografía de producto — Natura Tododia</div>
+          </div>
+          <div class="gallery-img-wrap" data-src="foto-03.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">🍋</span>
+              <span class="ph-label">Still life<br/>amarillo</span>
+            </div>
+            <div class="gallery-caption">Still life temático — paleta amarilla</div>
+          </div>
+        </div>
+        <div class="gallery-grid gallery-grid-4">
+          <div class="gallery-img-wrap" data-src="foto-04.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">💎</span>
+              <span class="ph-label">Fotografía<br/>joyería</span>
+            </div>
+            <div class="gallery-caption">Fotografía de joyería</div>
+          </div>
+          <div class="gallery-img-wrap" data-src="foto-05.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">✏️</span>
+              <span class="ph-label">Still life<br/>colores pastel</span>
+            </div>
+            <div class="gallery-caption">Still life — lápices de colores</div>
+          </div>
+          <div class="gallery-img-wrap" data-src="foto-06.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">📸</span>
+              <span class="ph-label">Fotografía<br/>social evento</span>
+            </div>
+            <div class="gallery-caption">Fotografía social</div>
+          </div>
+          <div class="gallery-img-wrap" data-src="foto-07.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">🦋</span>
+              <span class="ph-label">Fotografía<br/>de fauna</span>
+            </div>
+            <div class="gallery-caption">Fotografía de fauna</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ 4 ILUSTRACIÓN ══ -->
+      <div class="gallery-block gb-lila">
+        <p class="gallery-label">04 · Ilustración</p>
+        <h3 class="gallery-section-title">Ilustración Vectorial &amp; Digital</h3>
+        <p style="font-size:0.88rem;color:var(--text-soft);margin-bottom:24px;max-width:600px;">
+          Ilustración vectorial para branding de Tim Hortons y editorial. Ilustración digital para personajes institucionales.
+        </p>
+        <div class="gallery-grid gallery-grid-3">
+          <div class="gallery-img-wrap wide" data-src="ilus-01.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">☕</span>
+              <span class="ph-label">Ilustración vectorial<br/>Tim Hortons — íconos</span>
+            </div>
+            <div class="gallery-caption">Ilustración vectorial — Tim Hortons</div>
+          </div>
+          <div class="gallery-img-wrap" data-src="ilus-02.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">🚶</span>
+              <span class="ph-label">Ilustración vectorial<br/>@masciudad</span>
+            </div>
+            <div class="gallery-caption">Ilustración vectorial — @masciudad</div>
+          </div>
+          <div class="gallery-img-wrap" data-src="ilus-03.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">🎭</span>
+              <span class="ph-label">Ilustración digital<br/>personajes FARQ</span>
+            </div>
+            <div class="gallery-caption">Ilustración digital — personajes Teatro FARQ</div>
+          </div>
+          <div class="gallery-img-wrap" data-src="ilus-04.jpg">
+            <div class="img-placeholder">
+              <span class="ph-icon">👕</span>
+              <span class="ph-label">Diseño de<br/>playeras</span>
+            </div>
+            <div class="gallery-caption">Diseño de playeras / Merchandising</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCIA -->
+  <section id="experiencia">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <p class="section-label">03 · Trayectoria</p>
+          <h2 class="section-title">Experiencia<br/>en proyectos</h2>
+          <p class="mt-4" style="font-size:0.9rem;line-height:1.75;color:var(--text-soft);">Proyectos reales en instituciones y marcas: desde vinculación universitaria hasta gestión completa de redes sociales.</p>
+        </div>
+        <div class="col-lg-8">
+
+          <div class="exp-item">
+            <p class="exp-role">Freelance</p>
+            <h3 class="exp-title">Diseño Freelance</h3>
+            <p class="exp-date">Enero – Noviembre 2025</p>
+            <ul class="exp-bullets">
+              <li>Diseño de playeras y merchandising.</li>
+              <li>Creación de guías y revistas digitales.</li>
+              <li>Proyectos de re-branding para marcas locales.</li>
+            </ul>
+            <div class="exp-img-strip">
+              <div class="exp-img-thumb"><div class="img-placeholder"><span class="ph-icon">👕</span></div></div>
+              <div class="exp-img-thumb"><div class="img-placeholder"><span class="ph-icon">📖</span></div></div>
+              <div class="exp-img-thumb"><div class="img-placeholder"><span class="ph-icon">🔁</span></div></div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <p class="exp-role">Diseño · Fotografía</p>
+            <h3 class="exp-title">Diseñadora y Fotógrafa – Teatro FARQ</h3>
+            <p class="exp-date">Marzo – Noviembre 2025</p>
+            <ul class="exp-bullets">
+              <li>Fotografía social en eventos culturales y académicos.</li>
+              <li>Diseño de contenido para redes sociales.</li>
+              <li>Organización y gestión de plataformas digitales.</li>
+            </ul>
+            <div class="exp-img-strip">
+              <div class="exp-img-thumb"><div class="img-placeholder"><span class="ph-icon">🎭</span></div></div>
+              <div class="exp-img-thumb"><div class="img-placeholder"><span class="ph-icon">📸</span></div></div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <p class="exp-role">Servicio Social · Editorial</p>
+            <h3 class="exp-title">Diseñadora – Revista Ciencia UANL</h3>
+            <p class="exp-date">Junio – Noviembre 2025</p>
+            <ul class="exp-bullets">
+              <li>Diseño de contenido para redes sociales de la revista.</li>
+              <li>Edición de reels para plataformas digitales.</li>
+              <li>Ilustración vectorial para ediciones físicas y digitales.</li>
+              <li>Fotografía de fauna para proyectos editoriales.</li>
+            </ul>
+            <div class="exp-img-strip">
+              <div class="exp-img-thumb"><div class="img-placeholder"><span class="ph-icon">🌋</span></div></div>
+              <div class="exp-img-thumb"><div class="img-placeholder"><span class="ph-icon">🌿</span></div></div>
+              <div class="exp-img-thumb"><div class="img-placeholder"><span class="ph-icon">🐙</span></div></div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <p class="exp-role">Diseño · Vinculación</p>
+            <h3 class="exp-title">Diseño de Mobiliario – Tim Hortons</h3>
+            <p class="exp-date">Agosto – Noviembre 2024</p>
+            <ul class="exp-bullets">
+              <li>Diseño de propuesta de mobiliario orientado a la ergonomía.</li>
+              <li>Desarrollo de programa de necesidades del cliente.</li>
+              <li>Elaboración de moodboard y concepto visual.</li>
+              <li>Propuesta de mural decorativo para el espacio.</li>
+            </ul>
+            <div class="exp-img-strip">
+              <div class="exp-img-thumb"><div class="img-placeholder"><span class="ph-icon">🛋️</span></div><!-- <img src="tim-01.jpg" alt=""> --></div>
+              <div class="exp-img-thumb"><div class="img-placeholder"><span class="ph-icon">📐</span></div><!-- <img src="tim-02.jpg" alt=""> --></div>
+              <div class="exp-img-thumb"><div class="img-placeholder"><span class="ph-icon">🖥️</span></div><!-- <img src="tim-03.jpg" alt=""> --></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCACIÓN -->
+  <section id="educacion">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-label">04 · Formación</p>
+        <h2 class="section-title">Educación &amp; idiomas</h2>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-5">
+          <div class="edu-card">
+            <p class="edu-period">2021 – 2025</p>
+            <h3 class="edu-degree">Licenciatura en Diseño Industrial</h3>
+            <p class="edu-school">Facultad de Arquitectura – UANL</p>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="edu-card">
+            <p class="edu-period">2017 – 2020</p>
+            <h3 class="edu-degree">Técnica en Diseño y Comunicación Visual</h3>
+            <p class="edu-school">Preparatoria Técnica "Pablo Livas" – UANL</p>
+          </div>
+        </div>
+        <div class="col-12 mt-4 text-center">
+          <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-soft);margin-bottom:16px;">Idiomas</p>
+          <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <span class="lang-badge">🇲🇽 Español <strong>Nativo</strong></span>
+            <span class="lang-badge">🇺🇸 Inglés <strong>Básico</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" style="padding:80px 0;">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-label">05 · Contacto</p>
+        <h2 class="section-title">Hablemos de<br/>tu proyecto ✦</h2>
+        <p class="mt-3" style="font-size:0.95rem;color:rgba(255,255,255,0.5);max-width:420px;margin:12px auto 0;">Disponible para proyectos de diseño, fotografía e ilustración.</p>
+      </div>
+      <div class="row g-3 justify-content-center">
+        <div class="col-md-4">
+          <div class="contact-card">
+            <div class="contact-icon" style="background:var(--rosa-light);">📞</div>
+            <div><p class="contact-label">Teléfono</p><p class="contact-value">81 8800 9563</p></div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="contact-card">
+            <div class="contact-icon" style="background:#e8f7ed;">✉️</div>
+            <div><p class="contact-label">Correo electrónico</p><p class="contact-value" style="font-size:0.82rem;">maggie12nieves@hotmail.com</p></div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="contact-card">
+            <div class="contact-icon" style="background:var(--amarillo);">📍</div>
+            <div><p class="contact-label">Ubicación</p><p class="contact-value">Apodaca, Nuevo León</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Olga González · Hecho con <span>✦</span> en Nuevo León</p>
+  </footer>
+
+</div><!-- /content-wrap -->
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="Vista ampliada" />
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Lightbox — solo abre si hay imagen real (no placeholder)
+  const overlay  = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lightboxImg');
+  const lbClose  = document.getElementById('lightboxClose');
+
+  document.querySelectorAll('.gallery-img-wrap').forEach(wrap => {
+    wrap.addEventListener('click', () => {
+      const img = wrap.querySelector('img');
+      if (img) {
+        lbImg.src = img.src;
+        overlay.classList.add('active');
+      }
+    });
+  });
+  lbClose.addEventListener('click', () => overlay.classList.remove('active'));
+  overlay.addEventListener('click', e => { if(e.target === overlay) overlay.classList.remove('active'); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') overlay.classList.remove('active'); });
+</script>
+</body>
+</html>
