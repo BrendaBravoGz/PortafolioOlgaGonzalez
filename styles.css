@@ -42,6 +42,65 @@ nav {
 .nav-link-custom { font-size:0.83rem; font-weight:500; color:var(--text-soft); text-decoration:none; padding:4px 12px; border-radius:20px; transition:all .2s; letter-spacing:0.03em; text-transform:uppercase; }
 .nav-link-custom:hover { background:var(--rosa-light); color:var(--text); }
 
+/* Botón hamburguesa personalizado */
+.navbar-toggler {
+  border: 2px solid var(--rosa);
+  border-radius: 10px;
+  padding: 7px 10px;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  transition: background .2s;
+}
+.navbar-toggler:hover { background: var(--rosa-light); }
+.navbar-toggler:focus { outline: none; box-shadow: none; }
+.hamburger-line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform .3s, opacity .3s;
+}
+
+/* Animación X al abrir */
+.navbar-toggler[aria-expanded="true"] .hamburger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.navbar-toggler[aria-expanded="true"] .hamburger-line:nth-child(2) { opacity: 0; }
+.navbar-toggler[aria-expanded="true"] .hamburger-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Menú desplegado en móvil */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: rgba(253,250,199,0.97);
+    backdrop-filter: blur(10px);
+    border-top: 1.5px dashed var(--rosa);
+    margin-top: 12px;
+    padding: 16px 0 20px;
+    border-radius: 0 0 16px 16px;
+  }
+  .navbar-nav {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+    width: 100%;
+  }
+  .nav-link-custom {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+  }
+  .btn-cv {
+    margin-left: 0 !important;
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px !important;
+  }
+}
+
+
 /* HERO */
 .hero { min-height:92vh; display:flex; align-items:center; padding:80px 0 60px; }
 .hero-card { background:var(--white); border-radius:24px; border:2.5px solid #ddd; padding:60px 52px; position:relative; box-shadow:6px 6px 0 var(--rosa); }

@@ -15,16 +15,29 @@
 <div class="content-wrap">
 
   <!-- NAVBAR -->
-  <nav>
-    <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
       <a href="#" class="nav-brand">Olga<span>Gzz</span></a>
-      <div class="d-flex gap-1 flex-wrap">
-        <a href="#sobre"       class="nav-link-custom">Sobre mí</a>
-        <a href="#galeria"     class="nav-link-custom">Galería</a>
-        <a href="#experiencia" class="nav-link-custom">Experiencia</a>
-        <a href="#contacto"    class="nav-link-custom">Contacto</a>
+
+      <!-- Botón hamburguesa -->
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <!-- Links colapsables -->
+      <div class="collapse navbar-collapse" id="navMenu">
+        <div class="navbar-nav mx-auto d-flex gap-1 flex-wrap align-items-center">
+          <a href="#sobre"       class="nav-link-custom">Sobre mí</a>
+          <a href="#galeria"     class="nav-link-custom">Galería</a>
+          <a href="#experiencia" class="nav-link-custom">Experiencia</a>
+          <a href="#contacto"    class="nav-link-custom">Contacto</a>
+        </div>
+        <a href="CV_OlgaGonzalez.pdf" download class="btn-cv ms-lg-3 mt-3 mt-lg-0">Descargar CV</a>
       </div>
-      <a href="CV_OlgaGonzalez.pdf" download class="btn-cv">Descargar CV</a>
     </div>
   </nav>
 
@@ -369,7 +382,7 @@
           <div class="exp-item">
             <p class="exp-role">Freelance</p>
             <h3 class="exp-title">Diseño Freelance</h3>
-            <p class="exp-date">Enero – Noviembre 2025</p>
+            <p class="exp-date">Enero 2025 – Actualidad</p>
             <ul class="exp-bullets">
               <li>Diseño de playeras y merchandising.</li>
               <li>Creación de guías y revistas digitales.</li>
@@ -532,6 +545,15 @@
   lbClose.addEventListener('click', () => overlay.classList.remove('active'));
   overlay.addEventListener('click', e => { if(e.target === overlay) overlay.classList.remove('active'); });
   document.addEventListener('keydown', e => { if(e.key === 'Escape') overlay.classList.remove('active'); });
+
+  // Cerrar menú hamburguesa al hacer clic en un link (móvil)
+  document.querySelectorAll('#navMenu .nav-link-custom').forEach(link => {
+    link.addEventListener('click', () => {
+      const collapse = document.getElementById('navMenu');
+      const bsCollapse = bootstrap.Collapse.getInstance(collapse);
+      if (bsCollapse) bsCollapse.hide();
+    });
+  });
 </script>
 </body>
 </html>
