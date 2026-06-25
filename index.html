@@ -209,6 +209,44 @@
         </div>
       </div>
 
+      <!-- ══ PDF PASTE-UP ══ -->
+      <div class="gallery-block gb-cielo" style="margin-top:20px;">
+        <p class="gallery-label">01b · Diseño Editorial</p>
+        <h3 class="gallery-section-title">Guía Cómo Hacer Paste-Up 2025</h3>
+        <p style="font-size:0.88rem;color:var(--text-soft);margin-bottom:24px;max-width:600px;">
+          Participé en el diseño editorial de esta guía: maquetación, tipografía y composición visual para un documento técnico de uso educativo.
+        </p>
+
+        <!-- Card previa + botón -->
+        <div class="pdf-card">
+          <div class="pdf-card-left">
+            <div class="pdf-icon-wrap">
+              <span style="font-size:2.2rem;">📄</span>
+            </div>
+            <div>
+              <p class="pdf-card-title">Guía Cómo Hacer Paste-Up</p>
+              <p class="pdf-card-sub">Diseño editorial · 2025</p>
+            </div>
+          </div>
+          <button class="pdf-btn-ver" onclick="togglePDF(this)">Ver documento ↓</button>
+        </div>
+
+        <!-- Visor embebido (oculto por defecto) -->
+        <div class="pdf-viewer-wrap" id="pdfViewer" style="display:none;">
+          <iframe
+            src="https://drive.google.com/file/d/1KlcU7VIlzvBAyUXtzuxU2iIezvehprD6/preview"
+            class="pdf-iframe"
+            allow="autoplay"
+            title="Guía Cómo Hacer Paste-Up 2025">
+          </iframe>
+          <div style="text-align:right;margin-top:10px;">
+            <a href="https://drive.google.com/file/d/1KlcU7VIlzvBAyUXtzuxU2iIezvehprD6/view"
+               target="_blank"
+               class="pdf-link-ext">Abrir en Drive ↗</a>
+          </div>
+        </div>
+      </div>
+
       <!-- ══ 2 REDES SOCIALES ══ -->
       <div class="gallery-block gb-rosa">
         <p class="gallery-label">02 · Redes Sociales</p>
@@ -218,26 +256,33 @@
         </p>
         <!-- Grid estilo "posts de IG" -->
         <div class="gallery-grid gallery-grid-3" style="margin-bottom:14px;">
-          <div class="gallery-img-wrap square" data-src="redes-01.jpg">
+          <div class="gallery-img-wrap square" data-src="assets/images/redes-1-thumb.webp" data-full="assets/images/redes-1-full.webp">
             <div class="img-placeholder">
               <span class="ph-icon">🌋</span>
               <span class="ph-label">Post Volcanes<br/>Ciencia UANL</span>
             </div>
-            <div class="gallery-caption">Post educativo — Volcanes · Ciencia UANL</div>
+            <div class="gallery-caption">Post educativo — Volcanes · Ciencia UANL (1/2)</div>
           </div>
-          <div class="gallery-img-wrap square" data-src="redes-02.jpg">
+          <div class="gallery-img-wrap square" data-src="assets/images/redes-2-thumb.webp" data-full="assets/images/redes-2-full.webp">
             <div class="img-placeholder">
-              <span class="ph-icon">🌿</span>
-              <span class="ph-label">Post Anacahuita<br/>Ciencia UANL</span>
+              <span class="ph-icon">🌋</span>
+              <span class="ph-label">Post Volcanes<br/>Ciencia UANL</span>
             </div>
-            <div class="gallery-caption">Post educativo — Anacahuita · Ciencia UANL</div>
+            <div class="gallery-caption">Post educativo — Volcanes · Ciencia UANL (2/2)</div>
           </div>
-          <div class="gallery-img-wrap square" data-src="redes-03.jpg">
+          <div class="gallery-img-wrap square" data-src="assets/images/redes-3-thumb.webp" data-full="assets/images/redes-3-full.webp">
             <div class="img-placeholder">
               <span class="ph-icon">🐙</span>
               <span class="ph-label">Post Sangre<br/>de Colores</span>
             </div>
-            <div class="gallery-caption">Post educativo — Sangre de colores</div>
+            <div class="gallery-caption">Post educativo — Sangre de colores (1/2)</div>
+          </div>
+          <div class="gallery-img-wrap square" data-src="assets/images/redes-4-thumb.webp" data-full="assets/images/redes-4-full.webp">
+            <div class="img-placeholder">
+              <span class="ph-icon">🐙</span>
+              <span class="ph-label">Post Sangre<br/>de Colores</span>
+            </div>
+            <div class="gallery-caption">Post educativo — Sangre de colores (2/2)</div>
           </div>
           <div class="gallery-img-wrap square" data-src="redes-04.jpg">
             <div class="img-placeholder">
@@ -272,21 +317,21 @@
         </p>
         <div class="gallery-grid gallery-grid-3" style="margin-bottom:14px;">
           <!-- imagen grande producto Natura -->
-          <div class="gallery-img-wrap tall" data-src="foto-01.jpg">
+          <div class="gallery-img-wrap tall" data-src="assets/images/fotografia-1.webp">
             <div class="img-placeholder">
               <span class="ph-icon">🌸</span>
               <span class="ph-label">Producto Natura<br/>Tododia · rosas</span>
             </div>
             <div class="gallery-caption">Fotografía de producto — Natura Tododia</div>
           </div>
-          <div class="gallery-img-wrap tall" data-src="foto-02.jpg">
+          <div class="gallery-img-wrap tall" data-src="assets/images/fotografia-2.webp">
             <div class="img-placeholder">
               <span class="ph-icon">🌿</span>
               <span class="ph-label">Producto Natura<br/>Tododia · flores</span>
             </div>
             <div class="gallery-caption">Fotografía de producto — Natura Tododia</div>
           </div>
-          <div class="gallery-img-wrap" data-src="foto-03.jpg">
+          <div class="gallery-img-wrap" data-src="assets/images/fotografia-3.webp">
             <div class="img-placeholder">
               <span class="ph-icon">🍋</span>
               <span class="ph-label">Still life<br/>amarillo</span>
@@ -295,34 +340,15 @@
           </div>
         </div>
         <div class="gallery-grid gallery-grid-4">
-          <div class="gallery-img-wrap" data-src="foto-04.jpg">
+          <div class="gallery-img-wrap" data-src="assets/images/fotografia-4.webp">
             <div class="img-placeholder">
-              <span class="ph-icon">💎</span>
-              <span class="ph-label">Fotografía<br/>joyería</span>
+              <span class="ph-icon">🌈</span>
+              <span class="ph-label">Fotografía<br/>colores</span>
             </div>
-            <div class="gallery-caption">Fotografía de joyería</div>
+            <div class="gallery-caption">Fotografía de colores</div>
           </div>
-          <div class="gallery-img-wrap" data-src="foto-05.jpg">
-            <div class="img-placeholder">
-              <span class="ph-icon">✏️</span>
-              <span class="ph-label">Still life<br/>colores pastel</span>
-            </div>
-            <div class="gallery-caption">Still life — lápices de colores</div>
-          </div>
-          <div class="gallery-img-wrap" data-src="foto-06.jpg">
-            <div class="img-placeholder">
-              <span class="ph-icon">📸</span>
-              <span class="ph-label">Fotografía<br/>social evento</span>
-            </div>
-            <div class="gallery-caption">Fotografía social</div>
-          </div>
-          <div class="gallery-img-wrap" data-src="foto-07.jpg">
-            <div class="img-placeholder">
-              <span class="ph-icon">🦋</span>
-              <span class="ph-label">Fotografía<br/>de fauna</span>
-            </div>
-            <div class="gallery-caption">Fotografía de fauna</div>
-          </div>
+
+
         </div>
       </div>
 
@@ -546,6 +572,14 @@
   overlay.addEventListener('click', e => { if(e.target === overlay) overlay.classList.remove('active'); });
   document.addEventListener('keydown', e => { if(e.key === 'Escape') overlay.classList.remove('active'); });
 
+  // Toggle visor PDF
+  function togglePDF(btn) {
+    const viewer = document.getElementById('pdfViewer');
+    const isHidden = viewer.style.display === 'none';
+    viewer.style.display = isHidden ? 'block' : 'none';
+    btn.textContent = isHidden ? 'Ocultar documento ↑' : 'Ver documento ↓';
+  }
+
   // Cerrar menú hamburguesa al hacer clic en un link (móvil)
   document.querySelectorAll('#navMenu .nav-link-custom').forEach(link => {
     link.addEventListener('click', () => {
@@ -553,6 +587,21 @@
       const bsCollapse = bootstrap.Collapse.getInstance(collapse);
       if (bsCollapse) bsCollapse.hide();
     });
+  });
+
+  // Cargar imágenes de la galería usando el atributo data-src
+  document.querySelectorAll('.gallery-img-wrap').forEach(wrap => {
+    const src = wrap.getAttribute('data-src');
+    if (!src) return;
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = wrap.getAttribute('data-alt') || '';
+    img.loading = 'lazy';
+    // ocultar placeholder si existe
+    const ph = wrap.querySelector('.img-placeholder');
+    if (ph) ph.style.display = 'none';
+    // insertar la imagen al inicio del contenedor
+    wrap.insertBefore(img, wrap.firstChild);
   });
 </script>
 </body>
